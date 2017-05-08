@@ -26,6 +26,7 @@
   git:
     repo: https://github.com/jangernert/FeedReader.git
     dest: /tmp/feedreader
+    version: v2.0.2
 
 - name: Create build directory
   file: path=/tmp/feedreader/build state=directory
