@@ -1,0 +1,40 @@
+- name: Install dependencies of packages
+  apt: name={{item}} state=installed
+  with_items:
+    - build-essential
+    - cmake
+    - valac
+    - pkg-config
+    - libgirepository1.0-dev
+    - libgtk-3-dev
+    - libsoup2.4-dev
+    - libjson-glib-dev
+    - libwebkit2gtk-4.0-dev
+    - libsqlite3-dev
+    - libsecret-1-dev
+    - libnotify-dev
+    - libxml2-dev
+    - librest-dev
+    - libgee-0.8-dev
+    - libgstreamer1.0-dev
+    - libgstreamer-plugins-base1.0-dev
+    - libgoa-1.0-dev
+    - libcurl4-openssl-dev
+    - libpeas-dev
+
+- name: Clone repository
+  git:
+    repo: https://github.com/jangernert/FeedReader.git
+    dest: /tmp/feedreader
+
+- name: Create build directory
+  file: path=/tmp/feedreader/build state=directory
+
+- name: Run cmake
+  command: 'cmake .. chdir=/tmp/feedreader/build'
+
+- name: Run make
+  command: 'make chdir=/tmp/feedreader/build'
+
+- name: Run make install
+  command: 'make install chdir=/tmp/feedreader/build'
