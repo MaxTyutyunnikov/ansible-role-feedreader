@@ -31,11 +31,29 @@
 - name: Create build directory
   file: path=/tmp/feedreader/build state=directory
 
+- name: Check that /tmp/feedreader/build/Makefile exists
+  stat:
+    path: /tmp/feedreader/build/Makefile
+  register: stat_result
+
 - name: Run cmake
   command: 'cmake .. chdir=/tmp/feedreader/build'
+  when: stat_result.stat.exists == False
+
+- name: Check that /tmp/feedreader/build/feedreader exists
+  stat:
+    path:  /tmp/feedreader/build/feedreader
+  register: stat_result
 
 - name: Run make
   command: 'make chdir=/tmp/feedreader/build'
+  when: stat_result.stat.exists == False
+
+- name: Check that /usr/local/bin/feedreader exists
+  stat:
+    path:  /usr/local/bin/feedreader
+  register: stat_result
 
 - name: Run make install
   command: 'make install chdir=/tmp/feedreader/build'
+  when: stat_result.stat.exists == False
