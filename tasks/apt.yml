@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+
+  - name: Add feedreader source list
+    apt_repository:
+      repo: 'ppa:eviltwin1/feedreader-stable'
+
+  - name: Update repositories cache and install "feedreader" package
+    apt:
+      name: feedreader
+      update_cache: yes
