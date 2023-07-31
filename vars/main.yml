@@ -1,0 +1,14 @@
+patch: |
+    diff --git a/meson.build b/meson.build
+    index a5aa07de..cd407571 100644
+    --- a/meson.build
+    +++ b/meson.build
+    @@ -49,7 +49,7 @@ libsoup             = dependency('libsoup-2.4')
+     libxml              = dependency('libxml-2.0')
+     linux               = vala_compiler.find_library('linux')
+     posix               = vala_compiler.find_library('posix')
+    -rest                = dependency('rest-0.7')
+    +rest                = dependency('rest-1.0')
+     sqlite3             = dependency('sqlite3')
+     webkit2gtk          = dependency('webkit2gtk-4.0')
+     webkitextension     = dependency('webkit2gtk-web-extension-4.0')
